@@ -1,0 +1,79 @@
+@model List<WebApplication.Models.Exercise>
+@{
+    ViewData["Title"] = "Экзамен";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-4" style="color:#3b82f6;">Экзамен</h2>
+                    
+                    <div class="alert alert-info mb-4">
+                        <h4 class="alert-heading">Внимание!</h4>
+                        <p class="mb-0">Экзамен состоит из 10 вопросов. Каждый правильный ответ оценивается в 10 баллов.</p>
+                        <p class="mb-0">Максимальный балл: 100.</p>
+                        <p class="mb-0">Желаем удачи!</p>
+                    </div>
+
+                    <a asp-action="StartExam" class="btn btn-gradient">
+                        Начать экзамен
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(45deg, #3b82f6, #2563eb);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(45deg, #2563eb, #1d4ed8);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .alert {
+        border: none;
+        border-radius: 10px;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            var interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    document.getElementById('examForm').submit();
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var sixtyMinutes = 60 * 60,
+                display = document.querySelector('#time');
+            startTimer(sixtyMinutes, display);
+        };
+    </script>
+} 

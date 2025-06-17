@@ -1,0 +1,99 @@
+@model WebApplication.Controllers.ExerciseViewModel
+
+@{
+    ViewData["Title"] = "Задание";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <h2 class="card-title mb-4" style="color:#3b82f6;">@Model.Exercise.Question</h2>
+
+                    <form asp-action="Submit" method="post" class="mb-4">
+                        <input type="hidden" name="topicId" value="@Model.Exercise.TopicId" />
+                        <input type="hidden" name="exerciseId" value="@Model.Exercise.Id" />
+
+                        <div class="options mb-4">
+                            @{
+                                var options = Model.Exercise.Options.RootElement.EnumerateObject();
+                                foreach (var option in options)
+                                {
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="radio" name="answer" id="@option.Name" value="@option.Name" required>
+                                        <label class="form-check-label" for="@option.Name">
+                                            @option.Name: @option.Value.GetString()
+                                        </label>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                        <div class="buttons-container d-flex justify-content-between align-items-center mt-4">
+                            <button type="submit" class="btn btn-gradient" style="width: 200px;">
+                                Проверить ответ
+                            </button>
+
+                            <a asp-action="Index" class="btn btn-gradient-outline" style="width: 200px; margin-left: auto;">
+                                <i class="fas fa-arrow-left me-2"></i>Назад к списку
+                            </a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-check-input {
+        width: 1.2em;
+        height: 1.2em;
+        margin-top: 0.2em;
+    }
+
+    .form-check-label {
+        font-size: 1.1rem;
+        padding-left: 0.5rem;
+    }
+
+    .btn-gradient {
+        background: linear-gradient(45deg, #3b82f6, #2563eb);
+        color: white;
+        border: none;
+        padding: 0.8rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        min-width: 180px;
+        text-align: center;
+    }
+
+    .btn-gradient-outline {
+        background: white;
+        color: #2563eb;
+        border: 2px solid #2563eb;
+        padding: 0.8rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        min-width: 180px;
+        text-align: center;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(45deg, #2563eb, #1d4ed8);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .btn-gradient-outline:hover {
+        background: #f8f9fa;
+        color: #1d4ed8;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+    }
+</style>

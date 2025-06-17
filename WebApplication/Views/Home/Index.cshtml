@@ -1,0 +1,59 @@
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="container-fluid p-0">
+    <div class="bg-white py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="display-4 mb-5" style="color:#3b82f6;">Добро пожаловать в MathProb</h1>
+                <p class="lead mb-5 fs-4">Образовательная платформа для изучения теории вероятностей</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="card shadow-lg border-0 mb-5" style="margin-bottom: 5rem !important;">
+                    <div class="card-body text-center p-5">
+                        <div class="mb-5" style="margin-bottom: 2rem !important;">
+                            <i class="fas fa-book-open fa-5x" style="color:#3b82f6;"></i>
+                        </div>
+                        <h3 class="card-title h3 mb-4" style="margin-bottom: 1.5rem !important;">Теория</h3>
+                        <p class="card-text mb-5 fs-5" style="margin-bottom: 2rem !important;">Изучите теоретические материалы и примеры решения задач</p>
+                        <a asp-controller="Material" asp-action="Theory" class="btn btn-gradient btn-lg">
+                            <i class="fas fa-arrow-right me-2"></i>Перейти к теории
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card shadow-lg border-0 mb-5" style="margin-bottom: 5rem !important;">
+                    <div class="card-body text-center p-5">
+                        <div class="mb-5" style="margin-bottom: 2rem !important;">
+                            <i class="fas fa-calculator fa-5x" style="color:#3b82f6;"></i>
+                        </div>
+                        <h3 class="card-title h3 mb-4" style="margin-bottom: 1.5rem !important;">Задачи</h3>
+                        <p class="card-text mb-5 fs-5" style="margin-bottom: 2rem !important;">Практикуйтесь в решении задач разной сложности</p>
+                        <a asp-controller="Tasks" asp-action="Index" class="btn btn-gradient btn-lg">
+                            <i class="fas fa-arrow-right me-2"></i>Начать решать
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card shadow-lg border-0 mb-5" style="margin-bottom: 5rem !important;">
+                    <div class="card-body text-center p-5">
+                        <div class="mb-5" style="margin-bottom: 2rem !important;">
+                            <i class="fas fa-pencil-alt fa-5x" style="color:#3b82f6;"></i>
+                        </div>
+                        <h3 class="card-title h3 mb-4" style="margin-bottom: 1.5rem !important;">Экзамен</h3>
+                        <p class="card-text mb-5 fs-5" style="margin-bottom: 2rem !important;">Проверьте свои знания в тестовом режиме</p>
+                        <a asp-controller="Tasks" asp-action="Exam" class="btn btn-gradient btn-lg">
+                            <i class="fas fa-arrow-right me-2"></i>Начать экзамен
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

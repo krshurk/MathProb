@@ -1,0 +1,56 @@
+@model IEnumerable<WebApplication.Models.Topic>
+
+@{
+    ViewData["Title"] = "Задания";
+}
+
+<div class="container py-5">
+    <h1 class="text-center mb-5" style="color:#3b82f6;">Выберите тему</h1>
+
+    <div class="row">
+        @foreach (var topic in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100 shadow-sm hover-card">
+                    <div class="card-body">
+                        <h5 class="card-title">@topic.Title</h5>
+                        <p class="card-text text-muted">
+                            Количество заданий: @topic.Exercises.Count
+                        </p>
+                        <a asp-action="Topic" asp-route-id="@topic.Id" class="btn btn-gradient w-100">
+                            Начать
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    .btn-gradient {
+        background: linear-gradient(45deg, #3b82f6, #2563eb);
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(45deg, #2563eb, #1d4ed8);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+</style> 

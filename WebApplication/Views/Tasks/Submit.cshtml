@@ -1,0 +1,80 @@
+@model WebApplication.Controllers.ExerciseResultViewModel
+
+@{
+    ViewData["Title"] = "Результат";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Результат</h2>
+
+                    <div class="alert @(Model.IsCorrect ? "alert-success" : "alert-danger") mb-4">
+                        <h4 class="alert-heading">
+                            @(Model.IsCorrect ? "Правильно!" : "Неправильно!")
+                        </h4>
+                        <p class="mb-0">Ваш ответ: @Model.UserAnswer</p>
+                        @if (!Model.IsCorrect)
+                        {
+                            <p class="mb-0 mt-2">Правильный ответ: @Model.Exercise.CorrectAnswer</p>
+                            <p class="mb-0 mt-2">Пояснение: @Model.Exercise.DescriptionCorrectAnswer</p>
+                        }
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="@Url.Action("Index")" class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-left"></i> Назад к темам
+                        </a>
+
+                        @if (!Model.IsLastExercise && Model.NextExerciseId.HasValue)
+                        {
+                            <a href="@Url.Action("Exercise", new { topicId = Model.Exercise.TopicId, exerciseId = Model.NextExerciseId })" 
+                               class="btn btn-primary">
+                                Следующее задание <i class="fas fa-arrow-right"></i>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn {
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, #007bff, #0056b3);
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(45deg, #0056b3, #003d82);
+        transform: translateY(-2px);
+    }
+
+    .btn-outline-primary:hover {
+        transform: translateY(-2px);
+    }
+
+    .alert {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+</style> 

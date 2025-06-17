@@ -1,0 +1,29 @@
+@model WebApplication.Models.User
+@{
+    ViewData["Title"] = "Профиль";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Информация о пользователе</h3>
+                    <p><strong>Имя пользователя:</strong> @Model.Name</p>
+                    <p><strong>Email:</strong> @Model.Email</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Прогресс обучения</h3>
+                    <div class="progress mt-3">
+                       
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

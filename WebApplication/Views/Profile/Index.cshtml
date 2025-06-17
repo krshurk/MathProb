@@ -1,0 +1,119 @@
+@model WebApplication.Models.Progress
+
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+
+<div class="container py-5">
+    <h1 class="mb-5 fw-bold" style="color:#2563eb;">Личный кабинет</h1>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 mb-4">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Информация о пользователе</h5>
+                    <p class="card-text mb-2">Имя: <span class="fw-semibold">@User.Identity?.Name</span></p>
+                </div>
+            </div>
+
+            @if (ViewBag.HasCertificate)
+            {
+                <div class="card shadow-lg border-0">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Сертификат</h5>
+                        <p class="card-text mb-3">Вы успешно прошли курс и получили сертификат!</p>
+                        <a asp-controller="Tasks" asp-action="DownloadCertificate" asp-route-examId="@ViewBag.ExamId" 
+                           class="btn btn-gradient w-100">
+                            <i class="fas fa-download me-2"></i>Скачать сертификат
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Прогресс обучения</h5>
+                    @{
+                        var completionPercent = Math.Round(Model.CourseCompletion);
+                    }
+                    <div class="progress mb-3" style="height: 1.5rem;">
+                        <div class="progress-bar" 
+                             role="progressbar" 
+                             style="width: @completionPercent%;" 
+                             aria-valuenow="@completionPercent" 
+                             aria-valuemin="0" 
+                             aria-valuemax="100">
+                            @completionPercent%
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h6 class="card-title">Выполнено заданий</h6>
+                                    <p class="card-text display-6 fw-bold text-primary">@Model.CompletesExercises</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-title">Набрано баллов</h6>
+                                    <p class="card-text display-6 fw-bold text-primary">@Model.Score</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+    }
+
+    .progress {
+        background-color: #e9ecef;
+        border-radius: 0.5rem;
+    }
+
+    .progress-bar {
+        background-color: #2563eb;
+        border-radius: 0.5rem;
+        transition: width 0.6s ease;
+        font-weight: 600;
+        font-size: 1rem;
+        color: white;
+        text-align: center;
+        line-height: 1.5rem;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+    }
+    
+    .text-primary {
+        color: #2563eb !important;
+    }
+
+    .btn-gradient {
+        background: linear-gradient(45deg, #3b82f6, #2563eb);
+        color: white;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(45deg, #2563eb, #1d4ed8);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+</style> 

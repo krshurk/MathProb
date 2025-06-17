@@ -1,0 +1,48 @@
+@model WebApplication.Models.Exercise
+
+@{
+    ViewData["Title"] = "Задание";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">@Model.Question</h2>
+                    
+                    <form asp-action="Submit" method="post">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        
+                        <div class="form-group mb-3">
+                            <label for="answer" class="form-label">Ваш ответ:</label>
+                            <input type="text" class="form-control" id="answer" name="answer" required />
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">Назад к списку</a>
+                            <button type="submit" class="btn btn-primary">Проверить ответ</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .card-title {
+        color: #2c3e50;
+    }
+    .btn-primary {
+        background-color: #3498db;
+        border-color: #3498db;
+    }
+    .btn-primary:hover {
+        background-color: #2980b9;
+        border-color: #2980b9;
+    }
+</style> 

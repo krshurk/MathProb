@@ -1,0 +1,83 @@
+@model WebApplication.Models.Exam
+
+@{
+    ViewData["Title"] = "Результат экзамена";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-body text-center">
+                    <h2 class="card-title mb-4" style="color:#3b82f6;">Результат экзамена</h2>
+
+                    <div class="alert @(Model.Score >= 60 ? "alert-success" : "alert-danger") mb-4">
+                        <h4 class="alert-heading">
+                            @(Model.Score >= 60 ? "Поздравляем!" : "Попробуйте еще раз!")
+                        </h4>
+                        <p class="mb-0">Вы набрали @Model.Score баллов из 100</p>
+                        @if (Model.Score >= 60)
+                        {
+                            <p class="mb-0 mt-2">Экзамен успешно пройден!</p>
+                        }
+                        else
+                        {
+                            <p class="mb-0 mt-2">Для успешного прохождения необходимо набрать минимум 70 баллов.</p>
+                        }
+                    </div>
+
+                    <div class="d-flex justify-content-center gap-3">
+                        <a asp-action="Index" class="btn btn-gradient">
+                            Вернуться к темам
+                        </a>
+
+                        @if (Model.Score >= 60)
+                        {
+                            <a asp-action="DownloadCertificate" asp-route-examId="@Model.Id" class="btn btn-gradient">
+                                <i class="fas fa-download me-2"></i>Скачать сертификат
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-gradient {
+        background: linear-gradient(45deg, #3b82f6, #2563eb);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(45deg, #2563eb, #1d4ed8);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    .alert {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .alert-success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .alert-danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .gap-3 {
+        gap: 1rem;
+    }
+</style> 
