@@ -10,10 +10,6 @@
 ![CSS3](https://img.shields.io/badge/CSS3-8.8%25-1572B6?logo=css3&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-[![GitHub stars](https://img.shields.io/github/stars/username/MathProb?style=social)](https://github.com/username/MathProb/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/username/MathProb?style=social)](https://github.com/username/MathProb/network/members)
-[![GitHub watchers](https://img.shields.io/github/watchers/username/MathProb?style=social)](https://github.com/username/MathProb/watchers)
-
 ---
 
 ## 📋 Содержание
